@@ -30,6 +30,7 @@ test('getIssue rejects pull requests and reports missing issues', async () => {
 test('listLabels rejects invalid repository path before making a request', async () => {
   const api = fakeFetch([]);
   await assert.rejects(listLabels({ owner: '../x', repo: 'b' }, api), /path segments/);
+  await assert.rejects(listLabels({ owner: '..', repo: 'b' }, api), /path segments/);
   assert.equal(api.seen.length, 0);
 });
 

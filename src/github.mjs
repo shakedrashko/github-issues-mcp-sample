@@ -2,7 +2,7 @@ const API_ROOT = 'https://api.github.com';
 const NAME = /^[A-Za-z0-9_.-]{1,100}$/;
 
 export function validateRepository(owner, repo) {
-  if (!NAME.test(owner) || !NAME.test(repo)) {
+  if (!NAME.test(owner) || !NAME.test(repo) || owner === '.' || owner === '..' || repo === '.' || repo === '..') {
     throw new Error('owner and repo must be GitHub repository path segments');
   }
 }
